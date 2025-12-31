@@ -156,7 +156,7 @@ function initScrollToTop() {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: var(--gradient-primary);
+        background: #636363;
         color: white;
         border: none;
         cursor: pointer;

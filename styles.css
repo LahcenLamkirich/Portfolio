@@ -10,27 +10,27 @@
    CSS VARIABLES & DESIGN TOKENS
    =================================== */
 :root {
-  /* Salesforce-Inspired Color Palette */
-  --primary-blue: #0176d3;
-  --primary-purple: #7f56d9;
-  --accent-cyan: #06aed5;
-  --accent-orange: #ff6b35;
+  /* Light Gray Color Palette */
+  --primary-gray-light: #ebebeb;
+  --primary-gray-dark: #c0c0c0;
+  --accent-gray: #a8a8a8;
+  --accent-dark: #707070;
 
   /* Gradient Colors */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #0176d3 0%, #06aed5 100%);
-  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-primary: linear-gradient(135deg, #ebebeb 0%, #c0c0c0 100%);
+  --gradient-secondary: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
+  --gradient-accent: linear-gradient(135deg, #d4d4d4 0%, #c0c0c0 100%);
 
-  /* Dark Theme Colors */
-  --bg-dark: #0a0e27;
-  --bg-dark-secondary: #151a35;
-  --bg-card: rgba(255, 255, 255, 0.05);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  /* Light Theme Colors */
+  --bg-light: #ebebeb;
+  --bg-light-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f8f8;
 
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #b8c1ec;
-  --text-muted: #8892b0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -45,10 +45,10 @@
   --radius-lg: 24px;
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 40px rgba(192, 192, 192, 0.3);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -72,7 +72,7 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg-dark);
+  background: var(--bg-light);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -94,10 +94,7 @@ h6 {
 
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
 }
 
 h2 {
@@ -117,13 +114,13 @@ p {
 }
 
 a {
-  color: var(--accent-cyan);
+  color: var(--accent-dark);
   text-decoration: none;
   transition: var(--transition-fast);
 }
 
 a:hover {
-  color: var(--primary-purple);
+  color: var(--text-primary);
 }
 
 /* ===================================
@@ -149,9 +146,9 @@ nav {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 14, 39, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--primary-gray-dark);
   padding: var(--spacing-sm) 0;
 }
 
@@ -167,10 +164,7 @@ nav {
 .logo {
   font-size: 1.5rem;
   font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
 }
 
 .nav-links {
@@ -189,7 +183,7 @@ nav {
 
 .nav-links a:hover {
   color: var(--text-primary);
-  background: var(--bg-card);
+  background: var(--bg-light);
 }
 
 .mobile-menu-toggle {
@@ -220,8 +214,8 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, rgba(192, 192, 192, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(235, 235, 235, 0.2) 0%, transparent 50%);
   z-index: 0;
 }
 
@@ -234,7 +228,7 @@ nav {
 
 .hero-subtitle {
   font-size: 1.3rem;
-  color: var(--accent-cyan);
+  color: #000000;
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
@@ -283,17 +277,18 @@ nav {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
+  background: var(--gradient-secondary);
 }
 
 .btn-secondary {
   background: var(--bg-card);
   color: var(--text-primary);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--primary-gray-dark);
 }
 
 .btn-secondary:hover {
   background: var(--bg-card-hover);
-  border-color: var(--primary-purple);
+  border-color: var(--accent-dark);
 }
 
 /* ===================================
@@ -335,7 +330,7 @@ nav {
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-gray-dark);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   transition: var(--transition-normal);
@@ -343,7 +338,7 @@ nav {
 
 .glass-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--primary-gray-dark);
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
@@ -370,7 +365,7 @@ nav {
   top: 0;
   bottom: -40px;
   width: 2px;
-  background: linear-gradient(180deg, var(--primary-purple) 0%, transparent 100%);
+  background: linear-gradient(180deg, #808080 0%, transparent 100%);
 }
 
 .timeline-item:last-child::before {
@@ -383,22 +378,22 @@ nav {
   top: 8px;
   width: 20px;
   height: 20px;
-  background: var(--gradient-primary);
+  background: #606060;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px var(--bg-dark), 0 0 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 4px var(--bg-light), 0 0 20px rgba(96, 96, 96, 0.5);
 }
 
 .timeline-content {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #808080;
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   transition: var(--transition-normal);
 }
 
 .timeline-content:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: #606060;
   transform: translateX(5px);
 }
 
@@ -419,7 +414,7 @@ nav {
 
 .timeline-company {
   font-size: 1.2rem;
-  color: var(--accent-cyan);
+  color: #000000;
   font-weight: 600;
 }
 
@@ -445,7 +440,7 @@ nav {
   content: '▹';
   position: absolute;
   left: 0;
-  color: var(--accent-cyan);
+  color: #606060;
   font-weight: bold;
 }
 
@@ -462,14 +457,14 @@ nav {
 .skill-category {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-gray-dark);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   transition: var(--transition-normal);
 }
 
 .skill-category:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--accent-dark);
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
@@ -494,7 +489,7 @@ nav {
 .skill-item {
   padding: 0.75rem;
   margin-bottom: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(192, 192, 192, 0.08);
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   transition: var(--transition-fast);
@@ -502,10 +497,17 @@ nav {
 }
 
 .skill-item:hover {
-  background: rgba(102, 126, 234, 0.1);
-  border-left-color: var(--primary-purple);
+  background: rgba(192, 192, 192, 0.15);
+  border-left-color: var(--accent-dark);
   transform: translateX(5px);
 }
+
+.centered-skill {
+  grid-column: 1 / -1;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 
 /* ===================================
    EDUCATION SECTION
@@ -520,7 +522,7 @@ nav {
 .education-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-gray-dark);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   transition: var(--transition-normal);
@@ -531,7 +533,7 @@ nav {
 }
 
 .education-card:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--accent-dark);
   transform: translateX(5px);
 }
 
@@ -541,7 +543,7 @@ nav {
 }
 
 .education-institution {
-  color: var(--accent-cyan);
+  color: var(--accent-dark);
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
@@ -570,7 +572,7 @@ nav {
 .certification-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-gray-dark);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   text-align: center;
@@ -596,7 +598,7 @@ nav {
 }
 
 .certification-card:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--accent-dark);
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
@@ -621,16 +623,15 @@ nav {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.25rem 0.75rem;
-  background: rgba(6, 174, 213, 0.2);
-  color: var(--accent-cyan);
+  background: #2a9d8f;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
 .certification-status.in-progress {
-  background: rgba(255, 107, 53, 0.2);
-  color: var(--accent-orange);
+  background: #c1121f;
+  color: var(--text-secondary);
 }
 
 /* ===================================
@@ -652,14 +653,14 @@ nav {
 .contact-item {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary-gray-dark);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   transition: var(--transition-normal);
 }
 
 .contact-item:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--accent-dark);
   transform: translateY(-5px);
 }
 
@@ -683,15 +684,15 @@ nav {
 }
 
 .contact-value a {
-  color: var(--accent-cyan);
+  color: var(--accent-dark);
 }
 
 /* ===================================
    FOOTER
    =================================== */
 footer {
-  background: var(--bg-dark-secondary);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-light-secondary);
+  border-top: 1px solid var(--primary-gray-dark);
   padding: var(--spacing-md) 0;
   text-align: center;
 }
@@ -766,11 +767,11 @@ footer p {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(10, 14, 39, 0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
     padding: var(--spacing-sm);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--primary-gray-dark);
   }
 
   .nav-links.active {
