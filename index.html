@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Lahcen Lamkirich - Salesforce Developer with 3 years of experience specializing in Apex, LWC, Flow, and integrations. Based in Casablanca, Morocco.">
+        content="Lahcen Lamkirich - Salesforce Developer with 3+ years of experience specializing in Apex, LWC, Flow, and integrations. Based in Casablanca, Morocco.">
     <meta name="keywords"
         content="Salesforce Developer, Apex, Lightning Web Components, LWC, Salesforce Administrator, Casablanca, Morocco">
     <meta name="author" content="Lahcen Lamkirich">
+    <meta name="theme-color" content="#07090f">
 
     <title>Lahcen Lamkirich | Salesforce Developer</title>
+
+    <!-- Apply saved theme before paint to avoid a flash -->
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+        } catch (e) { }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
@@ -20,10 +36,19 @@
 </head>
 
 <body>
+    <!-- Scroll progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cursor glow (desktop only) -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">LL</div>
+            <a href="#home" class="logo" aria-label="Home">
+                <span class="logo-mark">LL</span>
+                <span class="logo-text">Lahcen<span class="accent">.</span></span>
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -32,46 +57,151 @@
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="icon-btn mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-content">
-            <p class="hero-subtitle fade-in stagger-1">Salesforce Developer</p>
-            <h1 class="fade-in stagger-2">Lahcen Lamkirich</h1>
-            <p class="hero-description fade-in stagger-3">
-                Experienced Salesforce developer with expertise in Apex, Lightning Web Components, Flow, and
-                integrations.
-                Passionate about designing efficient CRM solutions and optimizing client performance.
-            </p>
-            <div class="hero-cta fade-in stagger-4">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#experience" class="btn btn-secondary">View My Work</a>
+        <div class="hero-background">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <span class="hero-badge fade-in stagger-1">
+                    <span class="pulse-dot"></span>
+                    Open to new opportunities
+                </span>
+                <h1 class="fade-in stagger-2">
+                    Hi, I'm <span class="gradient-text">Lahcen Lamkirich</span>
+                </h1>
+                <p class="hero-role fade-in stagger-2">
+                    <span class="role-prefix">&gt;</span>
+                    <span id="typedRole">Salesforce Developer</span><span class="caret"></span>
+                </p>
+                <p class="hero-description fade-in stagger-3">
+                    Experienced Salesforce developer with expertise in Apex, Lightning Web Components, Flow, and
+                    integrations. Passionate about designing efficient CRM solutions and optimizing client performance.
+                </p>
+                <div class="hero-cta fade-in stagger-4">
+                    <a href="#contact" class="btn btn-primary">
+                        Get In Touch <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#experience" class="btn btn-secondary">View My Work</a>
+                </div>
+                <div class="hero-socials fade-in stagger-4">
+                    <a href="https://www.linkedin.com/in/lahcen-lamkirich-ab22271a3/" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:lahcen.lamkirich@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <span class="hero-location"><i class="fas fa-location-dot"></i> Casablanca, Morocco</span>
+                </div>
+            </div>
+
+            <!-- Code card -->
+            <div class="hero-visual fade-in stagger-3">
+                <div class="code-card tilt">
+                    <div class="code-card-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="code-file">LahcenLamkirich.cls</span>
+                    </div>
+<pre class="code-body"><code><span class="tok-kw">public with sharing class</span> <span class="tok-type">Developer</span> {
+  <span class="tok-kw">public</span> <span class="tok-type">String</span> name = <span class="tok-str">'Lahcen Lamkirich'</span>;
+  <span class="tok-kw">public</span> <span class="tok-type">String</span> base = <span class="tok-str">'Casablanca, MA'</span>;
+  <span class="tok-kw">public</span> <span class="tok-type">List</span>&lt;<span class="tok-type">String</span>&gt; stack = <span class="tok-kw">new</span> <span class="tok-type">List</span>&lt;<span class="tok-type">String</span>&gt;{
+    <span class="tok-str">'Apex'</span>, <span class="tok-str">'LWC'</span>, <span class="tok-str">'Flow'</span>, <span class="tok-str">'REST'</span>
+  };
+
+  <span class="tok-kw">public</span> <span class="tok-type">Boolean</span> <span class="tok-fn">isAvailable</span>() {
+    <span class="tok-kw">return</span> <span class="tok-kw">true</span>; <span class="tok-comment">// let's build 🚀</span>
+  }
+}</code></pre>
+                </div>
+                <div class="floating-chip chip-1"><i class="fas fa-cloud"></i> 5× Certified</div>
+                <div class="floating-chip chip-2"><i class="fas fa-bolt"></i> Apex &amp; LWC</div>
             </div>
         </div>
+
+        <!-- Stats -->
+        <div class="container">
+            <div class="hero-stats fade-in stagger-4">
+                <div class="stat">
+                    <span class="stat-number" data-count="3">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Years of experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="5">0</span>
+                    <span class="stat-label">Salesforce certifications</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label">Companies</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-label">Dev tools built</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="#experience" class="scroll-indicator" aria-label="Scroll down">
+            <span></span>
+        </a>
     </section>
+
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Apex</span><i class="fas fa-asterisk"></i>
+            <span>Lightning Web Components</span><i class="fas fa-asterisk"></i>
+            <span>Flow</span><i class="fas fa-asterisk"></i>
+            <span>REST APIs</span><i class="fas fa-asterisk"></i>
+            <span>Platform Events</span><i class="fas fa-asterisk"></i>
+            <span>Agentforce</span><i class="fas fa-asterisk"></i>
+            <span>Certinia PSA</span><i class="fas fa-asterisk"></i>
+            <span>Azure DevOps</span><i class="fas fa-asterisk"></i>
+            <span>Apex</span><i class="fas fa-asterisk"></i>
+            <span>Lightning Web Components</span><i class="fas fa-asterisk"></i>
+            <span>Flow</span><i class="fas fa-asterisk"></i>
+            <span>REST APIs</span><i class="fas fa-asterisk"></i>
+            <span>Platform Events</span><i class="fas fa-asterisk"></i>
+            <span>Agentforce</span><i class="fas fa-asterisk"></i>
+            <span>Certinia PSA</span><i class="fas fa-asterisk"></i>
+            <span>Azure DevOps</span><i class="fas fa-asterisk"></i>
+        </div>
+    </div>
 
     <!-- Experience Section -->
     <section id="experience">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Professional Experience</h2>
-                <p class="section-subtitle">3 years of hands-on Salesforce development and consulting</p>
+            <div class="section-header reveal">
+                <span class="section-eyebrow">01 — Experience</span>
+                <h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
+                <p class="section-subtitle">3+ years of hands-on Salesforce development and consulting</p>
             </div>
-            <!--  Personal Project : It tools for salesforce developer  -->
+
             <div class="experience-timeline">
-                <div class="timeline-item">
+                <!-- Personal Project : IT tools for salesforce developer -->
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content spotlight featured">
                         <div class="timeline-header">
                             <div>
-                                <h3 class="timeline-title">Salesforce Developer (Personal Project) </h3>
-                                <p class="timeline-company">IT Tools For Salesforce Developers </p>
+                                <span class="timeline-tag"><i class="fas fa-flask"></i> Side Project</span>
+                                <h3 class="timeline-title">Salesforce Developer (Personal Project)</h3>
+                                <p class="timeline-company">IT Tools For Salesforce Developers</p>
                             </div>
                             <span class="timeline-date">November 2025 - Present</span>
                         </div>
@@ -81,45 +211,74 @@
                             provides an intuitive interface for managing Salesforce metadata, permissions, and data
                             queries.
                         </p>
-                        <ul class="timeline-description">
-                            <li><strong>🗃️ Layout Manager</strong> - Bulk remove fields from Salesforce page layouts
-                                across multiple layouts simultaneously, eliminating tedious manual configuration</li>
-                            <li><strong>🔑 Permission Analyzer</strong> - Instantly identify which profiles and
-                                permission sets have access to specific fields or objects, providing complete visibility
-                                into security configurations</li>
-                            <li><strong>📦 Metadata Backup & Compare</strong> - Retrieve and backup Salesforce metadata
-                                for version control, enabling safe deployments and configuration tracking</li>
-                            <li><strong>🔍 SOQL Query Builder</strong> - Interactive query builder with autocomplete
-                                functionality, real-time execution, and export capabilities (CSV/JSON) for efficient
-                                data analysis</li>
-                        </ul>
+                        <div class="tool-grid">
+                            <div class="tool-card">
+                                <span class="tool-icon">🗃️</span>
+                                <h4>Layout Manager</h4>
+                                <p>Bulk remove fields from Salesforce page layouts across multiple layouts
+                                    simultaneously, eliminating tedious manual configuration</p>
+                            </div>
+                            <div class="tool-card">
+                                <span class="tool-icon">🔑</span>
+                                <h4>Permission Analyzer</h4>
+                                <p>Instantly identify which profiles and permission sets have access to specific fields
+                                    or objects, providing complete visibility into security configurations</p>
+                            </div>
+                            <div class="tool-card">
+                                <span class="tool-icon">📦</span>
+                                <h4>Metadata Backup &amp; Compare</h4>
+                                <p>Retrieve and backup Salesforce metadata for version control, enabling safe
+                                    deployments and configuration tracking</p>
+                            </div>
+                            <div class="tool-card">
+                                <span class="tool-icon">🔍</span>
+                                <h4>SOQL Query Builder</h4>
+                                <p>Interactive query builder with autocomplete functionality, real-time execution, and
+                                    export capabilities (CSV/JSON) for efficient data analysis</p>
+                            </div>
+                        </div>
+                        <div class="tech-tags">
+                            <span>Node.js</span><span>Express</span><span>JSForce</span><span>Metadata API</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Akkodis -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content spotlight">
                         <div class="timeline-header">
                             <div>
+                                <span class="timeline-tag current"><i class="fas fa-circle"></i> Current</span>
                                 <h3 class="timeline-title">Salesforce Consultant</h3>
                                 <p class="timeline-company">Akkodis – Casablanca, Morocco</p>
                             </div>
-                            <span class="timeline-date">February 2026– Present</span>
+                            <span class="timeline-date">February 2026 - Present</span>
                         </div>
                         <ul class="timeline-description">
-                            <li><strong>Engineering & Development:</strong> Design of Apex classes, Triggers, and LWC components to automate business workflows and reduce manual data entry.</li>
-                            <li><strong>PSA Integration:</strong> Led configuration and data migration to Certinia PSA, ensuring data consistency across Sandbox and Production environments.</li>
-                            <li><strong>Security & Permissions:</strong> Implemented a security architecture using Restriction Rules and Permission Set Groups for granular access control.</li>
-                            <li><strong>Automation:</strong> Developed Batch Apex and Queueable processes for mass synchronization and automated data management.</li>
-                            <li><strong>DevOps:</strong> Managed the application lifecycle via Azure DevOps and Salesforce CLI, ensuring smooth deployments between Sandbox and Production environments.</li>
+                            <li><strong>Engineering &amp; Development:</strong> Design of Apex classes, Triggers, and
+                                LWC components to automate business workflows and reduce manual data entry.</li>
+                            <li><strong>PSA Integration:</strong> Led configuration and data migration to Certinia PSA,
+                                ensuring data consistency across Sandbox and Production environments.</li>
+                            <li><strong>Security &amp; Permissions:</strong> Implemented a security architecture using
+                                Restriction Rules and Permission Set Groups for granular access control.</li>
+                            <li><strong>Automation:</strong> Developed Batch Apex and Queueable processes for mass
+                                synchronization and automated data management.</li>
+                            <li><strong>DevOps:</strong> Managed the application lifecycle via Azure DevOps and
+                                Salesforce CLI, ensuring smooth deployments between Sandbox and Production
+                                environments.</li>
                         </ul>
+                        <div class="tech-tags">
+                            <span>Apex</span><span>LWC</span><span>Certinia PSA</span><span>Batch Apex</span><span>Azure
+                                DevOps</span><span>SF CLI</span>
+                        </div>
                     </div>
                 </div>
+
                 <!-- Orange Business Maroc -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content spotlight">
                         <div class="timeline-header">
                             <div>
                                 <h3 class="timeline-title">Salesforce Consultant</h3>
@@ -139,13 +298,17 @@
                             <li>Developed bidirectional integration solutions between Salesforce and Azure Devops using
                                 REST APIs</li>
                         </ul>
+                        <div class="tech-tags">
+                            <span>Apex</span><span>LWC</span><span>Flow</span><span>REST API</span><span>Azure
+                                DevOps</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- DA Technologies -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="timeline-content spotlight">
                         <div class="timeline-header">
                             <div>
                                 <h3 class="timeline-title">Salesforce Developer (Internship)</h3>
@@ -158,6 +321,9 @@
                             <li>Developed Lightning Web Components and Visualforce pages for custom interfaces</li>
                             <li>Created custom components and interfaces to meet specific business requirements</li>
                         </ul>
+                        <div class="tech-tags">
+                            <span>LWC</span><span>Visualforce</span><span>Apex Tests</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -167,38 +333,35 @@
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Expertise</h2>
+            <div class="section-header reveal">
+                <span class="section-eyebrow">02 — Skills</span>
+                <h2 class="section-title">Skills &amp; <span class="gradient-text">Expertise</span></h2>
                 <p class="section-subtitle">Comprehensive Salesforce development and administration capabilities</p>
             </div>
 
             <div class="skills-grid">
                 <!-- Salesforce Development -->
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">⚡</span>
-                        Salesforce Development
-                    </h3>
+                <div class="skill-category spotlight reveal span-2">
+                    <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+                    <h3 class="skill-category-title">Salesforce Development</h3>
                     <ul class="skill-list">
                         <li class="skill-item">Apex (Triggers, Classes, Batch, Queueable, Scheduled)</li>
                         <li class="skill-item">Lightning Web Components (LWC)</li>
-                        <li class="skill-item">Exception Handling & Debugging</li>
-                        <li class="skill-item">SOQL & SOSL</li>
-                        <li class="skill-item">Salesforce Object Model & Data Architecture</li>
+                        <li class="skill-item">Exception Handling &amp; Debugging</li>
+                        <li class="skill-item">SOQL &amp; SOSL</li>
+                        <li class="skill-item">Salesforce Object Model &amp; Data Architecture</li>
                         <li class="skill-item">Governor Limits Optimization</li>
                     </ul>
                 </div>
 
                 <!-- Salesforce Administration -->
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">⚙️</span>
-                        Salesforce Administration
-                    </h3>
+                <div class="skill-category spotlight reveal">
+                    <div class="skill-category-icon"><i class="fas fa-sliders"></i></div>
+                    <h3 class="skill-category-title">Salesforce Administration</h3>
                     <ul class="skill-list">
-                        <li class="skill-item">Object & Field Configuration</li>
-                        <li class="skill-item">User & Profile Management</li>
-                        <li class="skill-item">Role Hierarchy & Permissions</li>
+                        <li class="skill-item">Object &amp; Field Configuration</li>
+                        <li class="skill-item">User &amp; Profile Management</li>
+                        <li class="skill-item">Role Hierarchy &amp; Permissions</li>
                         <li class="skill-item">Workflow Rules</li>
                         <li class="skill-item">Process Builder</li>
                         <li class="skill-item">Flow Automation</li>
@@ -206,30 +369,32 @@
                 </div>
 
                 <!-- Integration & APIs -->
-                <div class="skill-category">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">🔗</span>
-                        Integration & APIs
-                    </h3>
+                <div class="skill-category spotlight reveal">
+                    <div class="skill-category-icon"><i class="fas fa-plug"></i></div>
+                    <h3 class="skill-category-title">Integration &amp; APIs</h3>
                     <ul class="skill-list">
                         <li class="skill-item">REST API Integration</li>
                         <li class="skill-item">Platform Events</li>
                         <li class="skill-item">External Services Callouts</li>
                         <li class="skill-item">OAuth 2.0 Authentication</li>
-                        <li class="skill-item">Sandbox & Environment Managements</li>
+                        <li class="skill-item">Sandbox &amp; Environment Management</li>
                     </ul>
                 </div>
 
                 <!-- Languages -->
-                <div class="skill-category centered-skill">
-                    <h3 class="skill-category-title">
-                        <span class="skill-category-icon">🌐</span>
-                        Languages
-                    </h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">French - Professional Proficiency</li>
-                        <li class="skill-item">English - Professional Proficiency</li>
-                    </ul>
+                <div class="skill-category spotlight reveal span-2">
+                    <div class="skill-category-icon"><i class="fas fa-language"></i></div>
+                    <h3 class="skill-category-title">Languages</h3>
+                    <div class="language-list">
+                        <div class="language">
+                            <div class="language-head"><span>French</span><span>Professional Proficiency</span></div>
+                            <div class="language-bar"><span style="--level: 85%"></span></div>
+                        </div>
+                        <div class="language">
+                            <div class="language-head"><span>English</span><span>Professional Proficiency</span></div>
+                            <div class="language-bar"><span style="--level: 85%"></span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -238,31 +403,35 @@
     <!-- Education Section -->
     <section id="education">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
+            <div class="section-header reveal">
+                <span class="section-eyebrow">03 — Education</span>
+                <h2 class="section-title"><span class="gradient-text">Education</span></h2>
                 <p class="section-subtitle">Academic background in software engineering and information systems</p>
             </div>
 
             <div class="education-grid">
                 <!-- Engineering Degree -->
-                <div class="education-card">
+                <div class="education-card spotlight reveal">
+                    <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div class="education-info">
+                        <span class="education-date">2020 - 2023</span>
                         <h3>Engineering Degree in Software and Information Systems</h3>
-                        <p class="education-institution">École Normale Supérieure de l'Enseignement Technique Mohammedia
-                            (ENSET)</p>
-                        <p class="education-location">Hassan II University, Casablanca</p>
+                        <p class="education-institution">École Normale Supérieure de l'Enseignement Technique
+                            Mohammedia (ENSET)</p>
+                        <p class="education-location"><i class="fas fa-location-dot"></i> Hassan II University,
+                            Casablanca</p>
                     </div>
-                    <div class="education-date">2020 - 2023</div>
                 </div>
 
                 <!-- University Diploma -->
-                <div class="education-card">
+                <div class="education-card spotlight reveal">
+                    <div class="education-icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="education-info">
+                        <span class="education-date">2018 - 2020</span>
                         <h3>University Diploma in Computer Technology</h3>
                         <p class="education-institution">École Supérieure de Technologie</p>
-                        <p class="education-location">Essaouira</p>
+                        <p class="education-location"><i class="fas fa-location-dot"></i> Essaouira</p>
                     </div>
-                    <div class="education-date">2018 - 2020</div>
                 </div>
             </div>
         </div>
@@ -271,49 +440,51 @@
     <!-- Certifications Section -->
     <section id="certifications">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Certifications</h2>
+            <div class="section-header reveal">
+                <span class="section-eyebrow">04 — Certifications</span>
+                <h2 class="section-title"><span class="gradient-text">Certifications</span></h2>
                 <p class="section-subtitle">Salesforce certified professional with multiple credentials</p>
             </div>
 
             <div class="certifications-grid">
-                <!-- Platform Developer 1 -->
-                <div class="certification-card">
-                    <div class="certification-icon">🏆</div>
-                    <h3 class="certification-name">Salesforce Platform Developer I</h3>
-                    <p class="certification-year">2023</p>
-                    <span class="certification-status">Certified</span>
+                <!-- Platform Developer 2 -->
+                <div class="certification-card spotlight reveal highlight">
+                    <div class="certification-icon">🚀</div>
+                    <h3 class="certification-name">Salesforce Platform Developer II</h3>
+                    <p class="certification-year">2026</p>
+                    <span class="certification-status"><i class="fas fa-check"></i> Certified</span>
                 </div>
 
-                <!-- Administrator -->
-                <div class="certification-card">
-                    <div class="certification-icon">⭐</div>
-                    <h3 class="certification-name">Salesforce Administrator</h3>
-                    <p class="certification-year">2024</p>
-                    <span class="certification-status">Certified</span>
+                <!-- AgentForce Specialist -->
+                <div class="certification-card spotlight reveal">
+                    <div class="certification-icon">🧠</div>
+                    <h3 class="certification-name">Salesforce Agentforce Specialist</h3>
+                    <p class="certification-year">2025</p>
+                    <span class="certification-status"><i class="fas fa-check"></i> Certified</span>
                 </div>
 
                 <!-- AI Associate -->
-                <div class="certification-card">
+                <div class="certification-card spotlight reveal">
                     <div class="certification-icon">🤖</div>
                     <h3 class="certification-name">Salesforce AI Associate</h3>
                     <p class="certification-year">2025</p>
-                    <span class="certification-status">Certified</span>
+                    <span class="certification-status"><i class="fas fa-check"></i> Certified</span>
                 </div>
 
-                <!-- Platform Developer 2 -->
-                <div class="certification-card">
-                    <div class="certification-icon">🚀</div>
-                    <h3 class="certification-name">Salesforce Platform Developer II</h3>
-                 <p class="certification-year">2026</p>
-                    <span class="certification-status">Certified</span>
+                <!-- Administrator -->
+                <div class="certification-card spotlight reveal">
+                    <div class="certification-icon">⭐</div>
+                    <h3 class="certification-name">Salesforce Administrator</h3>
+                    <p class="certification-year">2024</p>
+                    <span class="certification-status"><i class="fas fa-check"></i> Certified</span>
                 </div>
 
-                <div class="certification-card">
-                    <div class="certification-icon">🧠</div>
-                    <h3 class="certification-name">Salesforce AgentForce Specialist </h3>
-                    <p class="certification-year">2025</p>
-                    <span class="certification-status">Certified</span>
+                <!-- Platform Developer 1 -->
+                <div class="certification-card spotlight reveal">
+                    <div class="certification-icon">🏆</div>
+                    <h3 class="certification-name">Salesforce Platform Developer I</h3>
+                    <p class="certification-year">2023</p>
+                    <span class="certification-status"><i class="fas fa-check"></i> Certified</span>
                 </div>
             </div>
         </div>
@@ -322,37 +493,50 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-panel reveal">
+                <div class="contact-glow"></div>
+                <span class="section-eyebrow">05 — Contact</span>
+                <h2 class="section-title">Let's build something <span class="gradient-text">great together</span></h2>
                 <p class="section-subtitle">Let's connect and discuss how I can help with your Salesforce projects</p>
-            </div>
 
-            <div class="contact-content">
+                <a href="mailto:lahcen.lamkirich@gmail.com" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane"></i> Say Hello
+                </a>
+
                 <div class="contact-info">
                     <!-- Email -->
                     <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <p class="contact-label">Email</p>
-                        <p class="contact-value">
-                            <a href="mailto:lahcen.lamkirich@gmail.com">lahcen.lamkirich@gmail.com</a>
-                        </p>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p class="contact-label">Email</p>
+                            <p class="contact-value">
+                                <a href="mailto:lahcen.lamkirich@gmail.com">lahcen.lamkirich@gmail.com</a>
+                            </p>
+                        </div>
+                        <button class="copy-btn" data-copy="lahcen.lamkirich@gmail.com" aria-label="Copy email">
+                            <i class="far fa-copy"></i>
+                        </button>
                     </div>
 
                     <!-- LinkedIn -->
                     <div class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <p class="contact-label">LinkedIn</p>
-                        <p class="contact-value">
-                            <a href="https://www.linkedin.com/in/lahcen-lamkirich-ab22271a3/"
-                                rel="noopener noreferrer">lahcen-lamkirich</a>
-                        </p>
+                        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <div>
+                            <p class="contact-label">LinkedIn</p>
+                            <p class="contact-value">
+                                <a href="https://www.linkedin.com/in/lahcen-lamkirich-ab22271a3/" target="_blank"
+                                    rel="noopener noreferrer">lahcen-lamkirich</a>
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Location -->
                     <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <p class="contact-label">Location</p>
-                        <p class="contact-value">Casablanca, Morocco</p>
+                        <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+                        <div>
+                            <p class="contact-label">Location</p>
+                            <p class="contact-value">Casablanca, Morocco</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -361,10 +545,14 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Lahcen Lamkirich. All rights reserved.</p>
+        <div class="container footer-inner">
+            <p>&copy; <span id="year">2026</span> Lahcen Lamkirich. All rights reserved.</p>
+            <p class="footer-note">Built with <i class="fas fa-heart"></i> &amp; a lot of Apex</p>
         </div>
     </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
